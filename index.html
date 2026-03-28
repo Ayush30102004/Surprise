@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>For Evara ❤️</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300&display=swap" rel="stylesheet">
+
+<style>
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #ff4d6d, #800020);
+    color: white;
+    text-align: center;
+}
+
+/* Envelope */
+#envelope {
+    margin-top: 150px;
+    cursor: pointer;
+    font-size: 28px;
+    opacity: 0.9;
+}
+
+/* Letter */
+#letter {
+    display: none;
+    padding: 30px;
+    animation: fadeIn 1.5s ease-in;
+}
+
+h1 {
+    font-family: 'Great Vibes', cursive;
+    font-size: 3.5em;
+    text-shadow: 0 0 10px rgba(255,255,255,0.6);
+}
+
+@keyframes fadeIn {
+    from {opacity:0;}
+    to {opacity:1;}
+}
+
+/* 💌 NOTE */
+.note {
+    max-width: 700px;
+    margin: 20px auto;
+    font-size: 1.2em;
+    line-height: 1.8;
+    background: rgba(255,255,255,0.1);
+    padding: 20px;
+    border-radius: 15px;
+}
+
+/* 📸 GALLERY - ALWAYS 4 COLUMNS */
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+    padding: 20px;
+}
+
+.gallery img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 12px;
+    border: 2px solid rgba(255,255,255,0.7);
+    transition: 0.3s;
+}
+
+.gallery img:hover {
+    transform: scale(1.05);
+}
+
+/* Button */
+button {
+    padding: 12px 22px;
+    border: none;
+    background: rgba(255,255,255,0.2);
+    color: white;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 16px;
+    backdrop-filter: blur(5px);
+}
+
+button:hover {
+    background: rgba(255,255,255,0.35);
+}
+
+/* Hearts */
+.heart {
+    position: fixed;
+    bottom: 0;
+    font-size: 18px;
+    animation: floatUp 5s linear infinite;
+}
+
+@keyframes floatUp {
+    to { transform: translateY(-100vh); opacity: 0; }
+}
+
+/* Mobile */
+@media(max-width:900px){
+    .gallery { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media(max-width:500px){
+    .gallery { grid-template-columns: repeat(1, 1fr); }
+}
+</style>
+</head>
+
+<body>
+
+<div id="envelope" onclick="openLetter()">💌 Tap to Open</div>
+
+<div id="letter">
+
+    <h1>Happy Birthday Evara ❤️</h1>
+
+    <div class="note">
+        My love 💖,<br><br>
+
+        You are not just special…  
+        you are the most important part of my life 🌹<br><br>
+
+        The way you smile, the way you get scared watching horror movies 😱  
+        and still continue watching them 😂❤️  
+        makes me fall for you more every single day.<br><br>
+
+        You are my peace, my happiness, my safe place 🐱  
+        my Ariel 🧜‍♀️, my everything.<br><br>
+
+        I don’t say this enough…  
+        but you mean the world to me 🌍💖<br><br>
+
+        I love you forever, Evara ❤️
+    </div>
+
+    <h2>📸 Our Memories</h2>
+
+    <div class="gallery">
+        <img src="photo1.jpg">
+        <img src="photo2.jpg">
+        <img src="photo3.jpg">
+        <img src="photo4.jpg">
+        <img src="photo5.jpg">
+        <img src="photo6.jpg">
+        <img src="photo7.jpg">
+        <img src="photo8.jpg">
+    </div>
+
+    <br>
+
+    <button onclick="playVoice()">🎤 Play Birthday Wish</button>
+
+    <br><br>
+
+    <button onclick="surprise()">Final Surprise 🎁</button>
+
+    <div id="final" style="display:none; margin-top:20px;">
+        Hey Baby<br><br>
+        Apke sath Foods of heart ke Chowmein ke safar se sath me Kharagpur me rhne ka safar kiya hai,
+        and I want ki ye safar kabhi khtm na ho❤️<br><br>
+        HAPPY BIRTHDAY MY LOVE 💖🌹
+    </div>
+
+</div>
+
+<!-- 🎵 Background Music -->
+<audio id="bgMusic" loop>
+    <source src="music.mp3" type="audio/mpeg">
+</audio>
+
+<!-- 🎤 Voice Message -->
+<audio id="voiceMsg">
+    <source src="voice.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+
+// Open Letter
+function openLetter() {
+    document.getElementById("envelope").style.display = "none";
+    document.getElementById("letter").style.display = "block";
+}
+
+// Play music on first click
+document.addEventListener("click", function() {
+    document.getElementById("bgMusic").play();
+}, { once: true });
+
+// 🎤 Play Voice with Music Control
+function playVoice() {
+    const music = document.getElementById("bgMusic");
+    const voice = document.getElementById("voiceMsg");
+
+    music.pause();        // Stop background music
+    voice.currentTime = 0;
+    voice.play();
+
+    // When voice ends → resume music
+    voice.onended = function() {
+        music.play();
+    };
+}
+
+// Hearts animation
+setInterval(() => {
+    let h = document.createElement("div");
+    h.className = "heart";
+    h.innerHTML = "❤️";
+    h.style.left = Math.random()*100 + "vw";
+    document.body.appendChild(h);
+    setTimeout(()=>h.remove(),5000);
+}, 400);
+
+// Surprise
+function surprise() {
+    document.getElementById("final").style.display = "block";
+}
+
+</script>
+
+</body>
+</html>
